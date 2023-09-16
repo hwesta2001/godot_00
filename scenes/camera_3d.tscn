@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ofedqcxx4801"]
+
+[ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_g5lp6"]
+
+[sub_resource type="Environment" id="Environment_vwodw"]
+background_mode = 1
+background_color = Color(0.286275, 0.768627, 0.792157, 1)
+background_energy_multiplier = 1.74
+
+[node name="camera_3d" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.661744, 0.74973, 0, -0.74973, 0.661744, 0.0253862, 1.31586, 0)
+environment = SubResource("Environment_vwodw")
+fov = 84.375
+far = 49.54
+script = ExtResource("1_g5lp6")

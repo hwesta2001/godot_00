@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://db1fdg4s825rg"]
+
+[ext_resource type="PackedScene" uid="uid://xk0qj88ikli0" path="res://gfx/hex.blend" id="1_r482j"]
+
+[node name="hex_prefab" type="Node3D"]
+
+[node name="hex" parent="." instance=ExtResource("1_r482j")]
