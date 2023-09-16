@@ -1,29 +1,24 @@
-extends Node2D
+extends Node3D
+
 
 @export var mapWight = 20
 @export var mapHeight = 20
-@export var tileXOffset = 60
-@export var tileZOffset = 50
+@export var tileXOffset = 1.75
+var tileZOffset
 var tileHight = 30
+var tempGrid: PackedScene = preload("res://scenes/hex_prefab.tscn")
 
 func createGrid():
 	tileHight = tileXOffset * .5
+	tileZOffset = sqrt(3)*tileHight
 	for x in mapWight:
 		for z in mapHeight:
-				var tempGrid = preload("res://scenes/hex.tscn").instantiate()
-				add_child(tempGrid)
+				var temp = tempGrid.instantiate()
+				add_child(temp)
 				if z % 2 == 0:
-					tempGrid.position = Vector2(x*tileXOffset,-z*tileZOffset)
+					temp.position = Vector3(x*tileXOffset,0,-z*tileZOffset)
 				else :
-					tempGrid.position = Vector2(x*tileXOffset+tileHight,-z*tileZOffset)
-				#pass
-	
-# Called when the node enters the scene tree for the first time.
+					temp.position = Vector3(x*tileXOffset+tileHight,0,-z*tileZOffset)
+
 func _ready():
 	createGrid()
-	#pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
