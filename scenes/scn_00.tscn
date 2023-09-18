@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://kth60p3ltb6t"]
+[gd_scene load_steps=4 format=3 uid="uid://kth60p3ltb6t"]
 
 [ext_resource type="Script" path="res://scripts/hex.gd" id="1_yyi4o"]
 [ext_resource type="PackedScene" uid="uid://ofedqcxx4801" path="res://scenes/camera_3d.tscn" id="2_2gx40"]
+[ext_resource type="PackedScene" uid="uid://c7n4kv3l6253" path="res://scenes/yer.tscn" id="3_tmyn2"]
 
 [node name="scn_00" type="Node3D"]
 script = ExtResource("1_yyi4o")
+mapWight = 50
+mapHeight = 25
 tileXOffset = 1.765
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -12,4 +15,10 @@ transform = Transform3D(1, 0, 0, 0, 0.581683, 0.813416, 0, -0.813416, 0.581683, 
 
 [node name="camera_3d" parent="." instance=ExtResource("2_2gx40")]
 transform = Transform3D(1, 0, 0, 0, 0.962725, 0.270483, 0, -0.270483, 0.962725, 0.0253862, 1.31586, 0.28037)
-cam_rotX_speed = 1.2
+fov = 70.0
+cam_rotX_speed = 0.6
+cam_rotY_speed = 0.7
+
+[node name="YER_willBeDeleted" parent="." instance=ExtResource("3_tmyn2")]
+transform = Transform3D(106.096, 0, 0, 0, 1, 0, 0, 0, 106.096, 71, 0, -69)
+canDelete = false

@@ -1,14 +1,27 @@
 extends Camera3D
 
-@export var speed = 14.0
-@export var cam_hight_speed = 18.0
-@export var cam_rotX_speed = 2.0
+@export var speed = 13.0
+@export var cam_hight_speed = 15.0
+@export var cam_rotX_speed = 1.1
+@export var cam_rotY_speed = 1.1
 
 var rotX: float = 0
+var rotY: float = 0
 
 func _process(delta):
-	position+=delta*speed*move()
+	translate(move()*delta*speed)
+	moveUp(delta)
+
+
+func moveUp(delta):
+	if Input.is_action_pressed("cam_up"):
+		if position.y<20:
+			position.y += delta*cam_hight_speed
+	if Input.is_action_pressed("cam_down"):
+		if position.y>1:
+			position.y -= delta*cam_hight_speed
 	position.y = clampf(position.y,1,20)
+
 
 func move():
 	var direction: Vector3 = Vector3.ZERO
@@ -20,16 +33,13 @@ func move():
 		direction.z += 1
 	if Input.is_action_pressed("up"):
 		direction.z -= 1
-	if Input.is_action_pressed("cam_up"):
-		direction.y += 1
-	if Input.is_action_pressed("cam_down"):
-		direction.y -= 1
-	DebugPanel.AddText(str(direction))
 	return direction
-	
+
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		rotX -= event.relative.y * cam_rotX_speed
-		rotX=clampf(rotX,-89,60)
+		rotY -= event.relative.x * cam_rotY_speed
+		rotX=clampf(rotX,-89.99,60)
 		rotation.x=deg_to_rad(rotX)
+		rotation.y=deg_to_rad(rotY)

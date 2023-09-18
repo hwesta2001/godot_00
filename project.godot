@@ -18,6 +18,7 @@ config/icon="res://gfx/icon.svg"
 [autoload]
 
 DebugPanel="*res://scenes/debug_panel.tscn"
+GLOBALS="*res://scripts/GLOBALS.gd"
 
 [input]
 
