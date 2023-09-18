@@ -4,7 +4,7 @@
 
 [sub_resource type="Environment" id="Environment_vwodw"]
 background_mode = 1
-background_color = Color(0.286275, 0.768627, 0.792157, 1)
+background_color = Color(0.0627451, 0.0823529, 0.188235, 1)
 background_energy_multiplier = 1.74
 
 [node name="camera_3d" type="Camera3D"]

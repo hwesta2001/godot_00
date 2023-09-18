@@ -21,3 +21,5 @@ func createGrid():
 
 func _ready():
 	createGrid()
+	DebugPanel.AddText("Grid Size: "+ str(mapHeight*mapWight))
+	

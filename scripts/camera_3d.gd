@@ -9,7 +9,6 @@ var rotX: float = 0
 func _process(delta):
 	position+=delta*speed*move()
 	position.y = clampf(position.y,1,20)
-	
 
 func move():
 	var direction: Vector3 = Vector3.ZERO
@@ -25,12 +24,12 @@ func move():
 		direction.y += 1
 	if Input.is_action_pressed("cam_down"):
 		direction.y -= 1
+	DebugPanel.AddText(str(direction))
 	return direction
 	
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		rotX += event.relative.y * cam_rotX_speed
+		rotX -= event.relative.y * cam_rotX_speed
 		rotX=clampf(rotX,-89,60)
-		print(rotX)
 		rotation.x=deg_to_rad(rotX)

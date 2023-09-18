@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsirdjxffgyg6"]
-
-[ext_resource type="Texture2D" uid="uid://1jvp0ygftp3q" path="res://gfx/hex.png" id="1_idp0v"]
-
-[node name="Hex" type="Sprite2D"]
-scale = Vector2(0.0714706, 0.0714706)
-texture = ExtResource("1_idp0v")

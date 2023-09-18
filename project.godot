@@ -15,6 +15,10 @@ run/main_scene="res://scenes/scn_00.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://gfx/icon.svg"
 
+[autoload]
+
+DebugPanel="*res://scenes/debug_panel.tscn"
+
 [input]
 
 up={
