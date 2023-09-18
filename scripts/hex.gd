@@ -11,19 +11,25 @@ var hex_prefab: PackedScene = preload("res://scenes/hex_prefab.tscn")
 func createGrid():
 	tileHight = tileXOffset * .5
 	tileZOffset = sqrt(3)*tileHight
-	GLOBALS.hexes.clear()
+	GLOBALS.HEXES.clear()
+	var hexes_node= Node3D.new()
+	hexes_node.name="hexes_node"
+	add_child(hexes_node)
+	
 	for x in mapWight:
 		for z in mapHeight:
-			var hex_node = hex_prefab.instantiate()
-			add_child(hex_node)
+			var hex_node = hex_prefab.instantiate() as Node3D
+			hex_node.name = "hex_"+str(x)+"_"+str(z)
+			hexes_node.add_child(hex_node)
 			if z % 2 == 0:
 				hex_node.position = Vector3(x*tileXOffset,0,-z*tileZOffset)
-			else :
+			else:
 				hex_node.position = Vector3(x*tileXOffset+tileHight,0,-z*tileZOffset)
-			GLOBALS.hexes.append(hex_node)
+			GLOBALS.HEXES.append(hex_node)
+			GLOBALS.HEXES_POSITIONS.append(hex_node.position)
 
 func _ready():
 	createGrid()
-	DebugPanel.AddText("Hexes Size: "+ str(GLOBALS.hexes.size()))
+	DebugPanel.AddText("Hexes Size: "+ str(GLOBALS.HEXES.size()))
 	DebugPanel.AddText("Grid Size: "+ str(mapHeight*mapWight))
 	
