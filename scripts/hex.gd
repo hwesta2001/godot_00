@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 @export var mapWight = 20
 @export var mapHeight = 20

@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2ijghjbwtjet"]
+[gd_scene load_steps=3 format=3 uid="uid://c2ijghjbwtjet"]
+
+[ext_resource type="Script" path="res://scripts/unit.gd" id="1_7tqgj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m2nqx"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_7tqgj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(0.675, 0, 0, 0, 0.675, 0, 0, 0, 0.675, 0, 0.684787, 0)
 mesh = SubResource("CapsuleMesh_m2nqx")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false

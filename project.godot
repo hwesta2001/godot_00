@@ -78,6 +78,11 @@ mouse_left={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_5="unit"
+3d_physics/layer_6="hex"
+
 [rendering]
 
 renderer/rendering_method="mobile"
