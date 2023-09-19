@@ -24,4 +24,4 @@ transform = Transform3D(106.096, 0, 0, 0, 1, 0, 0, 0, 106.096, 71, 0, -69)
 canDelete = false
 
 [node name="unit" parent="." instance=ExtResource("4_mq623")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.081665, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03049, 0)

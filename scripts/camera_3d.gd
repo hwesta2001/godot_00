@@ -10,7 +10,7 @@ var rotY: float = 0
 
 func _process(delta):
 	translate(move()*delta*speed)
-	moveUp(delta)
+	#moveUp(delta)
 
 
 func moveUp(delta):
