@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://d322q633nlmio" path="res://gfx/texture/yer_norm.tres" id="1_q8aqc"]
 
 [resource]
-albedo_color = Color(0, 0.658824, 0.0745098, 1)
 metallic = 0.02
 metallic_specular = 0.3
 roughness = 0.82
