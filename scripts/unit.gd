@@ -2,32 +2,28 @@ extends Node3D
 
 @onready var ray_cast_3d:RayCast3D = $ray3d
 var hexUnder: Node3D
-var collTick: bool
 var nearestHexes: Array[Node3D]
 
-func _ready():
+func _on_timer_timeout():
 	DebugPanel.AddText(str(ray_cast_3d.enabled))
-
-
-func _physics_process(_delta):
-	if ray_cast_3d.is_colliding():
-		if collTick:
-			collTick=false
-			nearestHexes.clear()
-			hexUnder=ray_cast_3d.get_collider().get_parent_node_3d()
-			self.position=hexUnder.global_position
-			nearestHexes=hexUnder.cast_now()
-			greenHexes()
-	else:
-		if !collTick:
-			hexUnder=null
-			collTick=true
-			clearHexes()
-
+	RayCast()
+	if hexUnder!=null:
+		position=hexUnder.position
 
 func RayCast():
-	collTick = !collTick
-	
+	ray_cast_3d.force_raycast_update()
+	if ray_cast_3d.is_colliding():
+		clearHexes()
+		hexUnder=ray_cast_3d.get_collider().get_owner()
+		nearestHexes=hexUnder.cast_now()
+		GLOBALS.MOVABLE_HEX_GROUP=nearestHexes
+		greenHexes()
+	else:
+		hexUnder=null
+		clearHexes()
+		GLOBALS.MOVABLE_HEX_GROUP.clear()
+
+
 func clearHexes():
 	for i in nearestHexes:
 		i.changeColor(Color.WHITE)
@@ -36,4 +32,4 @@ func clearHexes():
 func greenHexes():
 	for i in nearestHexes:
 		i.changeColor(Color.LIGHT_GREEN)
-	
+

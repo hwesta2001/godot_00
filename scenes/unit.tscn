@@ -13,8 +13,17 @@ mesh = SubResource("CapsuleMesh_m2nqx")
 
 [node name="ray3d" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.238607, 0)
+enabled = false
+target_position = Vector3(0, -5, 0)
 collision_mask = 32
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color(1, 0.486275, 1, 1)
 debug_shape_thickness = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.304
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

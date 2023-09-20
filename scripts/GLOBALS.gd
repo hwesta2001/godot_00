@@ -3,6 +3,7 @@ extends Node
 var HEXES: Array[Node3D]
 var HEXES_POSITIONS: Array[Vector3]
 var MOVE_STEPS: int
+var MOVABLE_HEX_GROUP: Array[Node3D]
 
 func NearestHexPos(node_pos:Vector3):
 	var _pos = HEXES_POSITIONS[0]

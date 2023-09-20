@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ofedqcxx4801"]
+[gd_scene load_steps=6 format=3 uid="uid://ofedqcxx4801"]
 
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_g5lp6"]
+[ext_resource type="Script" path="res://scripts/cam_ray.gd" id="2_5c1k1"]
+[ext_resource type="Material" uid="uid://cwcc3485k1si1" path="res://gfx/mat/ray.tres" id="3_5ws50"]
 
 [sub_resource type="Environment" id="Environment_vwodw"]
 background_mode = 1
@@ -12,9 +14,33 @@ fog_density = 0.1077
 fog_height_density = 1.391
 adjustment_brightness = 1.12
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a8ykv"]
+material = ExtResource("3_5ws50")
+
 [node name="camera_3d" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 0.661744, 0.74973, 0, -0.74973, 0.661744, 0.0253862, 1.31586, -0.0617322)
+transform = Transform3D(1, 0, 0, 0, 0.995219, 0.0976698, 0, -0.0976698, 0.995219, 0.0253862, 1.31586, -0.0617322)
 environment = SubResource("Environment_vwodw")
 fov = 84.375
 far = 42.47
 script = ExtResource("1_g5lp6")
+
+[node name="cam_ray" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.978774, -0.20494, 0, 0.20494, 0.978774, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, 0, -500)
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(0.705882, 0.227451, 0.337255, 1)
+debug_shape_thickness = 3
+script = ExtResource("2_5c1k1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cam_ray"]
+transform = Transform3D(0.05, 0, 0, 0, -2.18557e-06, -0.05, 0, 50, -2.18557e-09, 0, 0, -50)
+mesh = SubResource("CapsuleMesh_a8ykv")
+
+[node name="Timer" type="Timer" parent="cam_ray"]
+wait_time = 0.489
+
+[connection signal="ray_mouse_pos" from="cam_ray" to="." method="_on_cam_ray_ray_mouse_pos"]
+[connection signal="timeout" from="cam_ray/Timer" to="cam_ray" method="_on_timer_timeout"]

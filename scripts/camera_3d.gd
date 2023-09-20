@@ -1,26 +1,28 @@
 extends Camera3D
 
+#@export var cam_hight_speed = 15.0
 @export var speed = 13.0
-@export var cam_hight_speed = 15.0
 @export var cam_rotX_speed = 1.1
 @export var cam_rotY_speed = 1.1
 
 var rotX: float = 0
 var rotY: float = 0
 
+signal ray_cam_mouse(node:Node3D)
+
 func _process(delta):
 	translate(move()*delta*speed)
-	#moveUp(delta)
+	position.y = clampf(position.y,-1,20)
 
 
-func moveUp(delta):
-	if Input.is_action_pressed("cam_up"):
-		if position.y<20:
-			position.y += delta*cam_hight_speed
-	if Input.is_action_pressed("cam_down"):
-		if position.y>1:
-			position.y -= delta*cam_hight_speed
-	position.y = clampf(position.y,1,20)
+#func moveUp(delta):
+#	if Input.is_action_pressed("cam_up"):
+#		if position.y<20:
+#			position.y += delta*cam_hight_speed
+#	if Input.is_action_pressed("cam_down"):
+#		if position.y>1:
+#			position.y -= delta*cam_hight_speed
+#	position.y = clampf(position.y,1,20)
 
 
 func move():
@@ -43,3 +45,7 @@ func _input(event):
 		rotX=clampf(rotX,-89.99,60)
 		rotation.x=deg_to_rad(rotX)
 		rotation.y=deg_to_rad(rotY)
+
+
+func _on_cam_ray_ray_mouse_pos(node):
+	ray_cam_mouse.emit(node)
