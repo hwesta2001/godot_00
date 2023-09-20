@@ -1,6 +1,6 @@
 extends Node
 
-@export var mapWight = 20
+@export var mapWight = 25
 @export var mapHeight = 20
 @export var tileXOffset = 1.75
 
@@ -30,6 +30,4 @@ func createGrid():
 
 func _ready():
 	createGrid()
-	DebugPanel.AddText("Hexes Size: "+ str(GLOBALS.HEXES.size()))
-	DebugPanel.AddText("Grid Size: "+ str(mapHeight*mapWight))
-	
+	DebugPanel.AddText("Hexes Size: "+ str(GLOBALS.HEXES.size()))	

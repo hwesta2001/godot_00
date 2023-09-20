@@ -13,7 +13,6 @@ config_version=5
 config/name="gd_3d"
 run/main_scene="res://scenes/scn_00.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://gfx/icon.svg"
 
 [autoload]
 

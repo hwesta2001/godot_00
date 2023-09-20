@@ -1,7 +1,9 @@
 extends Control
 
 @onready var timer = get_node("/root/DebugPanel/Timer")
-@onready var richTextLabel = get_node("/root/DebugPanel/RichTextLabel")
+@onready var richTextLabel = get_node("/root/DebugPanel/debugText")
+@onready var move_steps = get_node("/root/DebugPanel/move_steps")
+
 #Singleton
 
 var allText = PackedStringArray([])
@@ -26,3 +28,6 @@ func _on_timer_timeout():
 	if !allText.is_empty():
 		allText.remove_at(allText.size()-1)
 		WriteText()
+		
+func set_move_steps_text():
+	move_steps.text=str(GLOBALS.MOVE_STEPS)
