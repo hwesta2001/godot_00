@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var cam_hight_speed = 20.0
+@export var cam_hight_speed = 30.0
 @export var speed = 13.0
 @export var cam_rotX_speed = 1.1
 @export var cam_rotY_speed = 1.1
@@ -12,7 +12,9 @@ var rotY: float = 0
 signal ray_cam_mouse(node:Node3D)
 
 func _process(delta):
-	position+=(move()*delta*speed)
+	var posy = position.y
+	translate(move()*delta*speed)
+	position.y=posy
 	position.y = clampf(position.y,-1,20)
 	moveUp(delta)
 

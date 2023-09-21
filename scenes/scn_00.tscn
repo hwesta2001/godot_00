@@ -12,7 +12,7 @@
 
 [node name="NOTLAR****" type="Node" parent="."]
 script = ExtResource("1_fluir")
-Not = " Camera control düzenle"
+Not = " Camera biiittti"
 
 [node name="hexes" type="Node" parent="."]
 script = ExtResource("1_yyi4o")

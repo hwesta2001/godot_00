@@ -1,17 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://ofedqcxx4801"]
+[gd_scene load_steps=7 format=3 uid="uid://ofedqcxx4801"]
 
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_g5lp6"]
 [ext_resource type="Script" path="res://scripts/cam_ray.gd" id="2_5c1k1"]
 [ext_resource type="Material" uid="uid://cwcc3485k1si1" path="res://gfx/mat/ray.tres" id="3_5ws50"]
+[ext_resource type="PackedScene" uid="uid://c7n4kv3l6253" path="res://scenes/yer.tscn" id="4_6n7cj"]
+
+[sub_resource type="Environment" id="Environment_7siyk"]
+background_mode = 1
+background_color = Color(0.316406, 0.328125, 0.726563, 1)
+fog_enabled = true
+fog_light_energy = 1.27
+fog_density = 0.0376
+fog_height_density = -0.7072
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a8ykv"]
 material = ExtResource("3_5ws50")
 
 [node name="camera_3d" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_g5lp6")
 
-[node name="cam_ray" type="RayCast3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]
+environment = SubResource("Environment_7siyk")
+current = true
+fov = 66.7
+far = 1000.0
+
+[node name="cam_ray" type="RayCast3D" parent="Camera3D"]
 enabled = false
 target_position = Vector3(0, 0, -500)
 collision_mask = 32
@@ -21,17 +35,15 @@ debug_shape_custom_color = Color(0.705882, 0.227451, 0.337255, 1)
 debug_shape_thickness = 3
 script = ExtResource("2_5c1k1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="cam_ray"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/cam_ray"]
 transform = Transform3D(0.05, 0, 0, 0, -2.18557e-06, -0.05, 0, 50, -2.18557e-09, 0, 0, -50)
 mesh = SubResource("CapsuleMesh_a8ykv")
 
-[node name="Timer" type="Timer" parent="cam_ray"]
+[node name="Timer" type="Timer" parent="Camera3D/cam_ray"]
 wait_time = 0.204
 
-[node name="Camera3D" type="Camera3D" parent="."]
-current = true
-fov = 66.7
-far = 1000.0
+[node name="MeshInstance3D" parent="." instance=ExtResource("4_6n7cj")]
+transform = Transform3D(37.2266, 0, 0, 0, 1, 0, 0, 0, 37.2266, 0, -2.83881, 0)
 
-[connection signal="ray_mouse_pos" from="cam_ray" to="." method="_on_cam_ray_ray_mouse_pos"]
-[connection signal="timeout" from="cam_ray/Timer" to="cam_ray" method="_on_timer_timeout"]
+[connection signal="ray_mouse_pos" from="Camera3D/cam_ray" to="." method="_on_cam_ray_ray_mouse_pos"]
+[connection signal="timeout" from="Camera3D/cam_ray/Timer" to="Camera3D/cam_ray" method="_on_timer_timeout"]
