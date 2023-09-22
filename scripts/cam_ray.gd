@@ -10,17 +10,17 @@ func _ready():
 	mesh_instance_3d.visible=false
 	
 func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == 1:
-		var from = camera_3d.project_ray_origin(event.position)
-		var to = from + camera_3d.project_ray_normal(event.position)
-		mesh_instance_3d.visible=true
-		timer.start()
-		look_at(to)
-		force_raycast_update()
-		if is_colliding():
-			var selected: Node3D = get_collider().get_owner()
-			ray_mouse_pos.emit(selected)
-			print(selected)
+	if !GLOBALS.MOUSE_ON_GUI:
+		if event is InputEventMouseButton and event.pressed and event.button_index == 1:
+			var from = camera_3d.project_ray_origin(event.position)
+			var to = from + camera_3d.project_ray_normal(event.position)
+			mesh_instance_3d.visible=true
+			timer.start()
+			look_at(to)
+			force_raycast_update()
+			if is_colliding():
+				var selected: Node3D = get_collider().get_owner()
+				ray_mouse_pos.emit(selected)
 
 
 func _on_timer_timeout():

@@ -31,3 +31,5 @@ func _on_timer_timeout():
 		
 func set_move_steps_text():
 	move_steps.text=str(GLOBALS.MOVE_STEPS)
+
+
