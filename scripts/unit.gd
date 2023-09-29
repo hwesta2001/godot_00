@@ -33,3 +33,8 @@ func greenHexes():
 	for i in nearestHexes:
 		i.changeColor(Color.LIGHT_GREEN)
 
+func _on_camera_3d_ray_cam_mouse(node):
+	var pos = node.position
+	var tween = get_tree().create_tween()
+	tween.tween_property($".","position",pos,2).finished.emit()
+	tween.tween_callback(RayCast)

@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2ijghjbwtjet"]
 
-[ext_resource type="Script" path="res://scripts/unit.gd" id="1_7tqgj"]
+[ext_resource type="Script" path="res://scripts/Unit.gd" id="1_6q7et"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m2nqx"]
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_7tqgj")
+script = ExtResource("1_6q7et")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.675, 0, 0, 0, 0.675, 0, 0, 0, 0.675, 0, 0.684787, 0)

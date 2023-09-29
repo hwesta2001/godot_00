@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://kth60p3ltb6t"]
+[gd_scene load_steps=7 format=3 uid="uid://kth60p3ltb6t"]
 
 [ext_resource type="Script" path="res://scripts/NOT.gd" id="1_fluir"]
 [ext_resource type="Script" path="res://scripts/hex.gd" id="1_yyi4o"]
@@ -6,16 +6,12 @@
 [ext_resource type="Script" path="res://scripts/LightControl.gd" id="2_6j17n"]
 [ext_resource type="PackedScene" uid="uid://c7n4kv3l6253" path="res://scenes/yer.tscn" id="3_tmyn2"]
 [ext_resource type="PackedScene" uid="uid://c2ijghjbwtjet" path="res://scenes/unit.tscn" id="4_mq623"]
-[ext_resource type="Script" path="res://scripts/UnitMover.gd" id="5_moqpe"]
 
 [node name="scn_00" type="Node3D"]
 
 [node name="NOTLAR****" type="Node" parent="."]
 script = ExtResource("1_fluir")
 Not = " Camera biiittti"
-
-[node name="hexes" type="Node" parent="."]
-script = ExtResource("1_yyi4o")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.364877, 0.432794, -0.824351, 0, 0.885394, 0.464842, 0.931056, -0.16961, 0.32306, 0, 13.8253, 0)
@@ -26,6 +22,9 @@ script = ExtResource("2_6j17n")
 [node name="Timer" type="Timer" parent="DirectionalLight3D"]
 wait_time = 0.208
 autostart = true
+
+[node name="hexes" type="Node" parent="."]
+script = ExtResource("1_yyi4o")
 
 [node name="camera_3d" parent="." instance=ExtResource("2_2gx40")]
 transform = Transform3D(1, 0, 0, 0, 0.76806, 0.640378, 0, -0.640378, 0.76806, 0, 4.617, 4.702)
@@ -38,8 +37,5 @@ canDelete = false
 
 [node name="unit" parent="." instance=ExtResource("4_mq623")]
 
-[node name="UnitMover" type="Node" parent="."]
-script = ExtResource("5_moqpe")
-
 [connection signal="timeout" from="DirectionalLight3D/Timer" to="DirectionalLight3D" method="_on_timer_timeout"]
-[connection signal="ray_cam_mouse" from="camera_3d" to="UnitMover" method="_on_camera_3d_ray_cam_mouse"]
+[connection signal="ray_cam_mouse" from="camera_3d" to="unit" method="_on_camera_3d_ray_cam_mouse"]
